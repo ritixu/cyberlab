@@ -1,4 +1,4 @@
-CyberLab is a environment where ethical hacker and web penitration testers can test Vunerable apps in a isolated Environment.
+CyberLab is a environment where ethical hacker and web penetration testers can test Vunerable web apps in a isolated Environment.
 
 
 Architecture:
