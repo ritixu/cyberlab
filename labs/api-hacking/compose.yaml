@@ -1,0 +1,7 @@
+services:
+  vapi:
+    image: roottusk/vapi
+    container_name: cyberlab-vapi
+    ports:
+      - "127.0.0.1:8085:80" # REST API endpoint surface
+    restart: unless-stopped

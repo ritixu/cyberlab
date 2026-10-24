@@ -1,0 +1,7 @@
+services:
+  xvwa:
+    image: tapanisl/xvwa
+    container_name: cyberlab-xvwa
+    ports:
+      - "127.0.0.1:8084:80"
+    restart: unless-stopped

@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/src"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+# 🔌 SOURCE: Load the external function modules into memory
+source "$PROJECT_ROOT/src/validation.sh"
+source "$PROJECT_ROOT/src/docker.sh"
+source "$PROJECT_ROOT/src/commands.sh"
+source "$PROJECT_ROOT/src/health.sh"
+
+main() {
+    check_prerequisites #src/validation.sh
+
+    if [[ $# -eq 0 ]]; then
+        echo "Usage: cyberlab up [lab-name]"
+        echo "use -h or --help for Help"
+        exit 0
+    fi
+
+    case "$1" in
+        -h|--help)
+            show_help
+            ;;
+        up)
+            local lab="$2"
+            validate_lab_name "$lab" # From validation.sh
+            deploy_lab_compose "$PROJECT_ROOT/labs/$lab" # From docker.sh
+            shift 2
+            ;;
+
+        list)
+			available_labs
+			shift
+			;;
+		list-containers)
+			list_all_containers
+			shift
+			;; 
+
+        status)
+            health_status
+            shift
+            ;;
+
+        down)
+            echo "Stopping Containers"
+			local lab="$2"
+            validate_lab_name "$lab"
+            containers_down "$PROJECT_ROOT/labs/$lab"
+            shift 2
+            ;;
+        logs)  
+            display_logs "$2"
+			shift 2
+            ;;  
+        stop)
+		 	local lab="$2"
+            validate_lab_name "$lab"
+            stop_container "$1"
+			shift 2
+            ;;
+        *)
+            echo "Unknown command"
+            ;;
+    esac
+}
+
+main "$@"
+

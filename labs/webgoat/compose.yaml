@@ -1,0 +1,10 @@
+services:
+  webgoat:
+    image: webgoat/webgoat:latest
+    container_name: cyberlab-webgoat
+    ports:
+      - "127.0.0.1:8081:8080" # WebGoat web interface
+      - "127.0.0.1:8082:9090" # Companion WebWolf interface
+    environment:
+      - TZ=Europe/London      # Matches timezones to ensure JWT token validity in challenges
+    restart: unless-stopped

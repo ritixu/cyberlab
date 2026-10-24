@@ -1,0 +1,7 @@
+services:
+  ad-viz:
+    image: lkarlslund/adalanche:latest
+    container_name: cyberlab-adalanche
+    ports:
+      - "127.0.0.1:8086:8080" # AD Visualizer Graph View
+    restart: unless-stopped

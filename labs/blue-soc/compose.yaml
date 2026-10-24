@@ -1,0 +1,18 @@
+services:
+  splunk:
+    image: splunk/splunk:latest
+    container_name: cyberlab-splunk
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=CyberLabSOCPassword123
+    ports:
+      - "127.0.0.1:8000:8000" # Splunk Web Interface
+      - "127.0.0.1:8089:8089" # Management Port
+    restart: unless-stopped
+
+  honeypot:
+    image: cowrie/cowrie:latest
+    container_name: cyberlab-cowrie
+    ports:
+      - "127.0.0.1:2222:2222" # Attackers target this fake SSH port
+    restart: unless-stopped
