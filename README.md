@@ -7,3 +7,18 @@ User uses Cli -> Controller (Checks prereqs and ports and cordinates accordingly
 
 Commands to use:
 
+Options: 
+-h, --help Show this help message and exit 
+-v, --version Show version information and exit 
+ 
+Commands: 
+ 
+cyberlab     	            help to use cyberlab 
+cyberlab list labs       	Show available practice labs 
+cyberlab list-containers    Show containers running 
+cyberlab up [lab_name]      Start the selected lab 
+cyberlab up dvwa            Start the selected lab dvwa 
+cyberlab status	            Show running services and health 
+cyberlab logs	            Display relevant container logs 
+cyberlab stop	  	        Stop the lab without deleting its configuration 
+cyberlab down	         	Stop the environment and remove its managed containers and network 
