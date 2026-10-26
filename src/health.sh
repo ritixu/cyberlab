@@ -3,9 +3,10 @@ set -euo pipefail
 
 health_status() {
 
-    echo "Cyberlab Deployments"
+    echo "Cyberlab Deployments:"
+	echo " "
 		local lab_list
-		lab_list=$(docker ps -a --filter "name=cyberlab-" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" 2>/dev/null || true)
+		lab_list=$(sudo docker ps -a --filter "name=cyberlab-" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}" 2>/dev/null || true)
 				
 		# Check if we found any labs (ignoring the table header row)
 		if [[ $(echo "$lab_list" | wc -l) -le 1 ]]; then

@@ -1,7 +1,24 @@
 services:
-  ad-viz:
-    image: lkarlslund/adalanche:latest
-    container_name: cyberlab-adalanche
-    ports:
-      - "127.0.0.1:8086:8080" # AD Visualizer Graph View
+  ad-simulator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cyberlab-ad-simulator
+    networks:
+      - cyberlab-isolated
     restart: unless-stopped
+
+  ad-viz:
+    build:
+      context: .
+      dockerfile: Dockerfile.visualizer
+    container_name: cyberlab-ad-viz
+    ports:
+      - "127.0.0.1::8080"
+    networks:
+      - cyberlab-isolated
+    restart: unless-stopped
+
+networks:
+  cyberlab-isolated:
+    internal: true

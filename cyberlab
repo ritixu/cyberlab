@@ -4,11 +4,12 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/src"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
-# 🔌 SOURCE: Load the external function modules into memory
+#load the external function modules into memory
 source "$PROJECT_ROOT/src/validation.sh"
 source "$PROJECT_ROOT/src/docker.sh"
 source "$PROJECT_ROOT/src/commands.sh"
 source "$PROJECT_ROOT/src/health.sh"
+
 
 main() {
     check_prerequisites #src/validation.sh
@@ -52,17 +53,19 @@ main() {
             shift 2
             ;;
         logs)  
-            display_logs "$2"
+            display_logs "${2:-}"
 			shift 2
             ;;  
         stop)
-		 	local lab="$2"
+		 	
+            local lab="$2"
             validate_lab_name "$lab"
-            stop_container "$1"
-			shift 2
+            stop_container "$PROJECT_ROOT/labs/$lab"
+            shift 2
             ;;
+
         *)
-            echo "Unknown command"
+            echo "Unknown command"  
             ;;
     esac
 }

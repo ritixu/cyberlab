@@ -1,0 +1,8 @@
+FROM alpine:latest
+RUN apk add --no-cache curl
+WORKDIR /app
+# Pulls the official compiled stable binary release directly from the source repository
+RUN curl -L -o adalanche https://github.com && \
+    chmod +x adalanche
+EXPOSE 8080
+ENTRYPOINT ["./adalanche", "server", "--port", "8080"]
