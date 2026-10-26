@@ -1,6 +1,6 @@
 services:
   webgoat:
-    image: webgoat/webgoat:latest
+    image: ${WEBGOAT_IMAGE}
     container_name: cyberlab-webgoat
     ports:
       - "127.0.0.1:8081:8080" # WebGoat web interface

@@ -1,6 +1,6 @@
 services:
   nodegoat:
-    image: owasp/nodegoat
+    image: ${NODEGOAT_IMAGE}
     container_name: cyberlab-nodegoat
     ports:
       - "127.0.0.1:4000:4000"

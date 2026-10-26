@@ -1,6 +1,6 @@
 services:
   juice-shop:
-    image: bkimminich/juice-shop
+    image: ${JUICE_SHOP_IMAGE}
     container_name: cyberlab-juice-shop
     ports:
       - "127.0.0.1:3000:3000"

@@ -1,6 +1,6 @@
 services:
   dvwa:
-    image: vulnerables/web-dvwa
+    image: ${DVWA_IMAGE}
     container_name: cyberlab-dvwa
     ports:
       - "127.0.0.1:8080:80"
