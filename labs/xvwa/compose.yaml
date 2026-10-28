@@ -3,5 +3,5 @@ services:
     image: ${XVWA_IMAGE}
     container_name: cyberlab-xvwa
     ports:
-      - "127.0.0.1:8084:80"
+      - "127.0.0.1:${PASS_INTO_YAML}"
     restart: unless-stopped

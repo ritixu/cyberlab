@@ -3,7 +3,7 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
-CONFIG_FILE="$PROJECT_ROOT/labs/labs.conf"
+# CONFIG_FILE="$PROJECT_ROOT/labs/labs.conf"
 
 deploy_lab_compose() {
     if [[ -z "${1:-}" ]]; then
